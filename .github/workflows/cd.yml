@@ -25,19 +25,19 @@ jobs:
   # Single deploy job since we're just deploying
   deploy:
     environment:
-      name: CD
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: CD
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: CD
+      - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: CD
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
           path: './src'
-      - name: CD
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
